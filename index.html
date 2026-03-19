@@ -7,23 +7,74 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="container">
-    <h1 class="brand">Unlimit Search</h1>
-    <p class="tagline">Google-powered custom search</p>
+  <main class="container home-page">
+    <div class="utility-row">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        Toggle theme
+      </button>
+    </div>
 
-    <section class="search-card" aria-label="Search">
-      <script async src="https://cse.google.com/cse.js?cx=005f19c66e75044b5"></script>
-      <div
-        class="gcse-searchbox-only"
-        data-resultsUrl="results.html"
-        data-newWindow="false"
-      ></div>
+    <p class="eyebrow">Fast. Focused. Frictionless.</p>
+    <h1 class="brand">Unlimit Search</h1>
+    <p class="tagline">Google-powered custom search with shortcuts and memory</p>
+
+    <section id="onboarding-tip" class="onboarding-tip" aria-label="Onboarding">
+      <p>
+        Tip: Click a chip for instant search, press <kbd>/</kbd> or <kbd>Ctrl</kbd> + <kbd>K</kbd> to focus, and use your recent-query suggestions as you type.
+      </p>
+      <button id="dismiss-onboarding" class="dismiss-tip" type="button" aria-label="Dismiss tips">Dismiss</button>
     </section>
 
-    <p class="hint">
-      Search results open on
-      <a href="results.html">results.html</a>
-    </p>
+    <section class="quick-actions" aria-label="Quick Searches">
+      <button class="chip" type="button" data-query="AI tools">AI tools</button>
+      <button class="chip" type="button" data-query="Developer productivity">Developer productivity</button>
+      <button class="chip" type="button" data-query="Open source projects">Open source projects</button>
+      <button class="chip" type="button" data-query="Startup ideas">Startup ideas</button>
+    </section>
+
+    <section class="search-card" aria-label="Search">
+      <form id="home-search-form" class="home-search-form" role="search" aria-label="Website search">
+        <label class="sr-only" for="home-query">Search query</label>
+        <div class="home-input-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input
+            id="home-query"
+            class="home-search-input"
+            type="search"
+            name="q"
+            placeholder="Search the web"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <button id="ai-mode-toggle" class="ai-mode-btn" type="button" aria-pressed="false">AI Mode</button>
+        <button class="home-search-btn" type="submit">Google Search</button>
+      </form>
+      <p id="home-ai-state" class="ai-state-text hidden">AI Mode is on. Search will open with an AI answer panel.</p>
+    </section>
+
+    <div class="meta-row">
+      <p class="hint">
+        Search results open on
+        <a href="results.html">results.html</a>
+      </p>
+      <p class="shortcut-tip">Press <kbd>/</kbd> to focus search</p>
+    </div>
+
+    <section class="panel" aria-label="Search Insights">
+      <div class="panel-header">
+        <h2>Search Insights</h2>
+      </div>
+      <div id="search-stats" class="stats-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-label="Recent Searches">
+      <div class="panel-header">
+        <h2>Recent Searches</h2>
+        <button id="clear-history" class="clear-btn" type="button">Clear</button>
+      </div>
+      <div id="recent-searches" class="recent-list" aria-live="polite"></div>
+    </section>
   </main>
 
   <script src="script.js"></script>

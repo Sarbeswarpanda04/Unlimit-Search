@@ -11,12 +11,38 @@
     <header class="results-header">
       <a class="back-link" href="index.html">← New search</a>
       <h1 class="brand small">Unlimit Search</h1>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        Toggle theme
+      </button>
     </header>
+
+    <section class="results-context" aria-label="Current Query">
+      <p class="context-label">Showing results for</p>
+      <h2 id="results-query" class="results-query">your latest query</h2>
+    </section>
+
+    <section id="ai-answer-panel" class="panel hidden" aria-label="AI Answer">
+      <div class="panel-header">
+        <h2>AI Answer</h2>
+      </div>
+      <p id="ai-answer-status" class="empty-state">Preparing AI response...</p>
+      <div id="ai-answer-content" class="ai-answer-content"></div>
+    </section>
 
     <section class="search-card" aria-label="Search Results">
       <script async src="https://cse.google.com/cse.js?cx=005f19c66e75044b5"></script>
       <div class="gcse-searchresults-only"></div>
     </section>
+
+    <section class="panel" aria-label="Recent Searches">
+      <div class="panel-header">
+        <h2>Recent Searches</h2>
+        <button id="clear-history" class="clear-btn" type="button">Clear</button>
+      </div>
+      <div id="recent-searches" class="recent-list" aria-live="polite"></div>
+    </section>
   </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
