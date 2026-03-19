@@ -4,18 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Unlimit Search - Results</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="container results-page">
-    <header class="results-header">
-      <a class="back-link" href="index.html">← New search</a>
-      <h1 class="brand small">Unlimit Search</h1>
+  <div class="results-top-search" role="search" aria-label="Search results">
+    <div class="results-top-inner">
+      <div class="results-top-left">
+        <a class="top-back-link" href="index.html" aria-label="New search">←</a>
+        <div class="results-top-brand">
+          <img class="site-logo small" src="Logo.png" alt="Unlimit Search logo" />
+          <h1 class="brand small">Unlimit Search</h1>
+        </div>
+      </div>
+
+      <form id="results-top-form" class="results-top-form">
+        <label class="sr-only" for="results-top-query">Search query</label>
+        <div class="results-top-input-wrap">
+          <input
+            id="results-top-query"
+            class="results-top-input"
+            type="search"
+            name="q"
+            placeholder="Search the web"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="results-top-btn" type="submit" aria-label="Search">
+            <img class="btn-search-icon-img" src="Search.png" alt="" aria-hidden="true" />
+          </button>
+        </div>
+      </form>
+
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
         Toggle theme
       </button>
-    </header>
+    </div>
+  </div>
 
+  <main class="container results-page">
     <section class="results-context" aria-label="Current Query">
       <p class="context-label">Showing results for</p>
       <h2 id="results-query" class="results-query">your latest query</h2>

@@ -193,6 +193,8 @@ function waitForSearchInput(callback) {
 function getSearchInput() {
 	const homeInput = document.getElementById("home-query");
 	if (homeInput) return homeInput;
+	const resultsTopInput = document.getElementById("results-top-query");
+	if (resultsTopInput) return resultsTopInput;
 	return document.querySelector("input.gsc-input");
 }
 
@@ -314,6 +316,38 @@ function setupHomeSearchForm() {
 	}
 }
 
+function setupResultsTopSearchForm() {
+	if (!isResultsPage()) return;
+
+	const form = document.getElementById("results-top-form");
+	const input = document.getElementById("results-top-query");
+	if (!form || !input) return;
+
+	const current = getCurrentQuery();
+	if (current) {
+		input.value = current;
+	}
+
+	form.addEventListener("submit", (event) => {
+		event.preventDefault();
+		const query = input.value.trim();
+		if (!query) {
+			input.focus();
+			return;
+		}
+
+		addToHistory(query);
+		const params = new URLSearchParams();
+		params.set("q", query);
+		if (isAiQuery()) {
+			params.set("mode", "ai");
+		}
+		window.location.href = `results.html?${params.toString()}`;
+	});
+
+	setupSuggestionInteractions(input);
+}
+
 function renderSuggestions(input) {
 	const container = ensureSuggestionContainer();
 	const term = input.value.trim().toLowerCase();
@@ -431,18 +465,6 @@ function setupGlobalShortcut() {
 	});
 }
 
-function setupQuickActions() {
-	const chips = document.querySelectorAll(".chip[data-query]");
-	chips.forEach((chip) => {
-		chip.addEventListener("click", () => {
-			const query = chip.getAttribute("data-query") || "";
-			if (!query) return;
-			addToHistory(query);
-			navigateToResults(query);
-		});
-	});
-}
-
 function setupThemeToggle() {
 	applyTheme(getSavedTheme());
 	const button = document.getElementById("theme-toggle");
@@ -507,10 +529,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	setupOnboardingTip();
 	setupAiModeToggle();
 	setupHomeSearchForm();
+	setupResultsTopSearchForm();
 	setupSearchInput();
 	setupSearchButtonCapture();
 	setupGlobalShortcut();
-	setupQuickActions();
 	setupClearHistory();
 	setupResultsContext();
 	setupResultsTabTransitions();

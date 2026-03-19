@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Unlimit Search</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -14,6 +15,7 @@
       </button>
     </div>
 
+    <img class="site-logo" src="Logo.png" alt="Unlimit Search logo" />
     <p class="eyebrow">Fast. Focused. Frictionless.</p>
     <h1 class="brand">Unlimit Search</h1>
     <p class="tagline">Google-powered custom search with shortcuts and memory</p>
@@ -23,13 +25,6 @@
         Tip: Click a chip for instant search, press <kbd>/</kbd> or <kbd>Ctrl</kbd> + <kbd>K</kbd> to focus, and use your recent-query suggestions as you type.
       </p>
       <button id="dismiss-onboarding" class="dismiss-tip" type="button" aria-label="Dismiss tips">Dismiss</button>
-    </section>
-
-    <section class="quick-actions" aria-label="Quick Searches">
-      <button class="chip" type="button" data-query="AI tools">AI tools</button>
-      <button class="chip" type="button" data-query="Developer productivity">Developer productivity</button>
-      <button class="chip" type="button" data-query="Open source projects">Open source projects</button>
-      <button class="chip" type="button" data-query="Startup ideas">Startup ideas</button>
     </section>
 
     <section class="search-card" aria-label="Search">
@@ -46,9 +41,11 @@
             autocomplete="off"
             spellcheck="false"
           />
+          <button class="home-search-btn icon-only" type="submit" aria-label="Search">
+            <img class="btn-search-icon-img" src="Search.png" alt="" aria-hidden="true" />
+          </button>
         </div>
         <button id="ai-mode-toggle" class="ai-mode-btn" type="button" aria-pressed="false">AI Mode</button>
-        <button class="home-search-btn" type="submit">Google Search</button>
       </form>
       <p id="home-ai-state" class="ai-state-text hidden">AI Mode is on. Search will open with an AI answer panel.</p>
     </section>
