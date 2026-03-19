@@ -773,6 +773,85 @@ input.gsc-search-button:active {
   border-color: #5f6368 !important;
 }
 
+/* Results tabs */
+.gsc-tabsArea {
+  border-bottom: 1px solid var(--border) !important;
+  margin-bottom: 10px !important;
+  padding-bottom: 2px !important;
+}
+
+.gsc-tabHeader {
+  position: relative !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--muted) !important;
+  font-family: "Space Grotesk", "Segoe UI", Arial, Helvetica, sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  padding: 12px 8px 10px !important;
+  margin-right: 20px !important;
+  transition: color 180ms ease, transform 180ms ease, opacity 180ms ease !important;
+}
+
+.gsc-tabHeader::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: -2px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 220ms ease;
+}
+
+.gsc-tabHeader:hover {
+  color: var(--text) !important;
+}
+
+.gsc-tabHeader.gsc-tabhActive,
+.gsc-tabHeader.gsc-tabhActive:hover {
+  color: var(--primary) !important;
+  transform: translateY(-1px) !important;
+}
+
+.gsc-tabHeader.gsc-tabhActive::after {
+  transform: scaleX(1);
+}
+
+.gsc-tabHeader.gsc-tabhInactive {
+  opacity: 0.85;
+}
+
+.gsc-orderby-container,
+.gsc-orderby-label {
+  color: var(--muted) !important;
+  transition: color 180ms ease !important;
+}
+
+.gsc-results-wrapper-overlay,
+.gsc-results-wrapper-nooverlay {
+  transition: opacity 220ms ease, transform 220ms ease !important;
+}
+
+.gsc-results-wrapper-overlay.tab-switching,
+.gsc-results-wrapper-nooverlay.tab-switching {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+:root[data-theme="dark"] .gsc-tabHeader:hover {
+  color: #e8eaed !important;
+}
+
+:root[data-theme="dark"] .gsc-tabHeader.gsc-tabhActive,
+:root[data-theme="dark"] .gsc-tabHeader.gsc-tabhActive:hover {
+  color: #ffcb8c !important;
+}
+
 /* Results list */
 .gsc-results-wrapper-overlay,
 .gsc-results-wrapper-nooverlay {
@@ -949,6 +1028,12 @@ a.gs-title:hover {
     height: 44px !important;
     font-size: 14px !important;
     border-radius: 24px !important;
+  }
+
+  .gsc-tabHeader {
+    font-size: 16px !important;
+    margin-right: 14px !important;
+    padding: 10px 6px 9px !important;
   }
 
   input.gsc-input {

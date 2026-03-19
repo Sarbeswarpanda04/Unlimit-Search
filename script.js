@@ -485,6 +485,23 @@ function setupResultsContext() {
 	if (currentQuery) addToHistory(currentQuery);
 }
 
+function setupResultsTabTransitions() {
+	if (!isResultsPage()) return;
+
+	document.addEventListener("click", (event) => {
+		const tab = event.target.closest(".gsc-tabHeader");
+		if (!tab) return;
+
+		const container = document.querySelector(".gsc-results-wrapper-overlay, .gsc-results-wrapper-nooverlay");
+		if (!container) return;
+
+		container.classList.add("tab-switching");
+		window.setTimeout(() => {
+			container.classList.remove("tab-switching");
+		}, 230);
+	});
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 	setupThemeToggle();
 	setupOnboardingTip();
@@ -496,6 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	setupQuickActions();
 	setupClearHistory();
 	setupResultsContext();
+	setupResultsTabTransitions();
 	setupAiAnswerPanel();
 	renderRecentSearches();
 	renderStats();
